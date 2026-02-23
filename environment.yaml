@@ -1,0 +1,23 @@
+name: capsule_endoscopy
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch=2.2.1
+  - torchvision=0.17.1
+  - pytorch-cuda=12.1
+  - pandas
+  - scikit-learn
+  - pip
+  - pip:
+    - timm==0.9.16
+    - albumentations==1.4.1
+    - dominate
+    - visdom
+    - numpy
+    - opencv-python
+    - PIL-layout
+    - matplotlib
+    - requests

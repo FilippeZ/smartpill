@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartPill Command - Mission History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0a0a0c",
+                        "surface-dark": "#16161a",
+                        "border-dark": "#232f48",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background: linear-gradient(90deg, rgba(17, 82, 212, 0.2) 0%, rgba(17, 82, 212, 0) 100%);
+            border-left: 3px solid #1152d4;
+        }
+        .glass-panel {
+            background: rgba(22, 22, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(35, 47, 72, 0.5);
+        }
+        .grid-bg {
+            background-image: radial-gradient(rgba(17, 82, 212, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display selection:bg-primary/30 min-h-screen overflow-x-hidden grid-bg">
+<div class="flex h-screen overflow-hidden">
+<!-- Persistent Sidebar -->
+<aside class="w-64 flex flex-col glass-panel border-r border-border-dark hidden lg:flex">
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-2xl">pill</span>
+</div>
+<div>
+<h1 class="text-sm font-bold tracking-tight uppercase">SmartPill</h1>
+<p class="text-[10px] text-slate-500 font-medium tracking-widest uppercase">Command Center</p>
+</div>
+</div>
+<nav class="flex-1 px-4 mt-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-3 text-slate-400 hover:text-white transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-white active-nav rounded-r-lg" href="#">
+<span class="material-symbols-outlined fill-1">history</span>
+<span class="text-sm font-medium">Mission History</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-400 hover:text-white transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Patients</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-400 hover:text-white transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">AI Diagnostics</span>
+</a>
+<div class="pt-4 pb-2 px-3 text-[10px] font-bold text-slate-600 uppercase tracking-widest">System</div>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-400 hover:text-white transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Configuration</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-slate-400 hover:text-white transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">security</span>
+<span class="text-sm font-medium">Compliance</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<div class="bg-primary/10 rounded-xl p-4 border border-primary/20">
+<p class="text-xs font-semibold text-primary mb-1">System Status</p>
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<p class="text-[11px] text-slate-400">All Nodes Operational</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden relative">
+<!-- Header -->
+<header class="h-16 border-b border-border-dark flex items-center justify-between px-8 bg-background-dark/80 backdrop-blur-md z-10">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+<span>Missions</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-100">History Archives</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-slate-500 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">search</span>
+</span>
+<input class="bg-surface-dark border-border-dark focus:ring-primary focus:border-primary rounded-lg pl-10 pr-4 py-1.5 text-sm w-80 transition-all outline-none" placeholder="Search Patient ID, Date or Diagnosis..." type="text"/>
+</div>
+<div class="h-6 w-[1px] bg-border-dark"></div>
+<div class="flex items-center gap-4">
+<button class="relative text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-primary rounded-full ring-2 ring-background-dark"></span>
+</button>
+<div class="flex items-center gap-3 pl-2 border-l border-border-dark">
+<div class="text-right">
+<p class="text-xs font-bold leading-none">Dr. Sarah Chen</p>
+<p class="text-[10px] text-slate-500 font-medium">Chief Operator</p>
+</div>
+<div class="size-9 rounded-lg bg-cover bg-center border border-border-dark" data-alt="Portrait of professional female doctor" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBC8SuGHIm0zdlZsgfpeJDdWySFf2VcbA-nYRq3c0Qwh1FFzgT9-YbvaR2Br6698O_g7qIFMkHJ2SyeeKu-78d8gVwl_w1MnCIMoYhLybZv1qEZVCPbfDiRcWIJSWIDX0rgNLN0NVU82Umk4g1sK5fR_VRp_KVyW_xu2ZR7ruTyHNSOBDlCK6Kagsvn6ksCwgGyX0m7-Y6aQKekoB5NgYUSDeIjEUY8cIr-UJWUjSzYv4XFss5bhbKDsNAfii6lrpKZDWck2yw7C4')"></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar">
+<!-- Hero Section & Filters -->
+<div class="flex items-end justify-between">
+<div>
+<h2 class="text-3xl font-black tracking-tight text-white mb-2">Mission History</h2>
+<p class="text-slate-400 text-sm max-w-xl">Review and analyze past SmartPill missions. AI detection highlights are pre-processed for rapid medical evaluation.</p>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-dark border border-border-dark rounded-lg text-sm font-semibold hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/30 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+                            Export CSV
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<!-- Missions Table Container -->
+<div class="col-span-12 xl:col-span-9 space-y-4">
+<div class="glass-panel rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-dark/50 text-slate-400 uppercase text-[10px] font-bold tracking-widest border-b border-border-dark">
+<th class="px-6 py-4">Mission Date</th>
+<th class="px-6 py-4">Patient ID</th>
+<th class="px-6 py-4">Duration</th>
+<th class="px-6 py-4">Clinical Findings</th>
+<th class="px-6 py-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-dark/50">
+<!-- Row 1 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-slate-100">Oct 24, 2023</span>
+<span class="text-[11px] text-slate-500 font-medium">08:14 AM UTC</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<code class="text-xs bg-surface-dark px-2 py-1 rounded text-primary font-mono font-bold">PX-992-01</code>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-400">07:22:12</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>
+<span class="text-sm text-slate-300">2 Polyps Detected (Type II)</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="px-4 py-1.5 rounded-lg border border-primary/40 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all">View Report</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-slate-100">Oct 23, 2023</span>
+<span class="text-[11px] text-slate-500 font-medium">02:45 PM UTC</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<code class="text-xs bg-surface-dark px-2 py-1 rounded text-primary font-mono font-bold">PX-844-09</code>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-400">06:42:15</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+<span class="text-sm text-slate-300">Normal Scan - No Abnormalities</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="px-4 py-1.5 rounded-lg border border-primary/40 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all">View Report</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-slate-100">Oct 21, 2023</span>
+<span class="text-[11px] text-slate-500 font-medium">11:30 AM UTC</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<code class="text-xs bg-surface-dark px-2 py-1 rounded text-primary font-mono font-bold">PX-102-55</code>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-400">08:01:44</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]"></span>
+<span class="text-sm text-slate-300">Suspected Ulceration (Lower G.I.)</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="px-4 py-1.5 rounded-lg border border-primary/40 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all">View Report</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-slate-100">Oct 19, 2023</span>
+<span class="text-[11px] text-slate-500 font-medium">09:12 AM UTC</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<code class="text-xs bg-surface-dark px-2 py-1 rounded text-primary font-mono font-bold">PX-771-42</code>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-400">05:55:01</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+<span class="text-sm text-slate-300">Normal Scan - High Clarity</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="px-4 py-1.5 rounded-lg border border-primary/40 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all">View Report</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between text-xs font-medium text-slate-500 pt-2">
+<span>Showing 4 of 142 total missions</span>
+<div class="flex items-center gap-1">
+<button class="size-8 flex items-center justify-center rounded border border-border-dark hover:bg-surface-dark"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="size-8 flex items-center justify-center rounded bg-primary text-white">1</button>
+<button class="size-8 flex items-center justify-center rounded border border-border-dark hover:bg-surface-dark">2</button>
+<button class="size-8 flex items-center justify-center rounded border border-border-dark hover:bg-surface-dark">3</button>
+<button class="size-8 flex items-center justify-center rounded border border-border-dark hover:bg-surface-dark"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Sidebar Stats -->
+<div class="col-span-12 xl:col-span-3 space-y-6">
+<!-- Monthly Total -->
+<div class="glass-panel p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">analytics</span>
+</div>
+<h3 class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">Total Missions (Month)</h3>
+<div class="flex items-end justify-between">
+<div>
+<p class="text-4xl font-black text-white leading-none">142</p>
+<div class="flex items-center gap-1 text-emerald-500 mt-2">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-xs font-bold">+12.5%</span>
+</div>
+</div>
+<div class="flex gap-1 h-12 items-end">
+<div class="w-1.5 bg-slate-800 rounded-full h-[40%]"></div>
+<div class="w-1.5 bg-slate-800 rounded-full h-[60%]"></div>
+<div class="w-1.5 bg-primary rounded-full h-[85%]"></div>
+<div class="w-1.5 bg-primary rounded-full h-[70%]"></div>
+<div class="w-1.5 bg-primary rounded-full h-[100%] shadow-[0_0_10px_rgba(17,82,212,0.5)]"></div>
+</div>
+</div>
+</div>
+<!-- Avg Duration -->
+<div class="glass-panel p-6 rounded-xl">
+<h3 class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">Avg. Mission Duration</h3>
+<p class="text-3xl font-black text-white leading-none mb-4">06:42:15</p>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] text-slate-500 font-bold uppercase">
+<span>Target (6h)</span>
+<span class="text-rose-500">+42m</span>
+</div>
+<div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-full w-[88%] rounded-full relative">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-white/20"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Accuracy -->
+<div class="glass-panel p-6 rounded-xl flex items-center justify-between gap-4">
+<div class="flex-1">
+<h3 class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">AI Detection Accuracy</h3>
+<p class="text-3xl font-black text-primary">99.8<span class="text-sm font-medium">%</span></p>
+<p class="text-[10px] text-slate-500 font-medium mt-1">NPU Core Precision v4.2</p>
+</div>
+<div class="relative size-16 flex items-center justify-center">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-slate-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="99.8, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<span class="material-symbols-outlined absolute text-primary text-lg">psychology</span>
+</div>
+</div>
+<!-- Recent Health Insight -->
+<div class="p-6 rounded-xl bg-gradient-to-br from-primary/20 to-transparent border border-primary/20">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-xl">info</span>
+<h3 class="text-white text-xs font-bold">Diagnostics Insight</h3>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">
+                                AI has identified a 15% increase in mucosal inflammation detections across the last 30 missions. Review protocol updates in system settings.
+                            </p>
+<button class="mt-4 text-xs font-bold text-primary hover:underline">Read Analysis Report</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Overlay Elements -->
+<div class="absolute bottom-0 left-0 p-4 pointer-events-none opacity-20">
+<div class="text-[10px] font-mono text-slate-500">
+                    LATENCY: 14ms | UPTIME: 99.999% | CORE_TEMP: 42°C
+                </div>
+</div>
+</main>
+</div>
+</body></html>

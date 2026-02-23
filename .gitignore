@@ -1,0 +1,53 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+.venv
+env/
+ENV/
+
+# Project Specific
+/backend/weights/*.pth
+/backend/weights/*.onnx
+/backend/__pycache__
+/public/frames/
+/Pill_Marketing_Video_Generated_000 2/
+/bandicam 2026-02-23 17-24-29-849.mp4
+/convert_video.py
+/The_Ingestible_Revolution.pdf

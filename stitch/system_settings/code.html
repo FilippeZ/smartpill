@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartPill Command - System Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #1152d4;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">pill</span>
+</div>
+<h1 class="font-bold text-lg tracking-tight">SmartPill <span class="text-primary">CMD</span></h1>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">videocam</span>
+<span class="font-medium">Live Stream</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">System Settings</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<div class="bg-slate-100 dark:bg-slate-800/50 rounded-xl p-4">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="text-xs font-semibold uppercase tracking-wider opacity-70">System Active</span>
+</div>
+<p class="text-[10px] leading-relaxed opacity-50">v2.4.0-Stable Build<br/>Last Sync: 2m ago</p>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Top Header -->
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md z-10">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-sm">
+<span class="text-slate-400">Patient:</span>
+<span class="font-bold">#PX-99284</span>
+</div>
+<div class="h-4 w-px bg-slate-200 dark:bg-slate-800"></div>
+<div class="flex items-center gap-2 text-sm">
+<span class="text-slate-400">Uptime:</span>
+<span class="font-mono text-primary font-bold">04:12:44</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden border border-slate-300 dark:border-slate-700">
+<img class="w-full h-full object-cover" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXWBwX4KLQZva-ToZBapLkDH01w0yVac5IvlqzrUNtl6IsKLbtKLPMCiKTrKWm_Qql3UC4Pv6ZSAYxkQ3Mxv8CD70KdXzHxHazBJHMpj6DTlBkG5XXMYx0oSRKWTMTlONdlbBhnIYcuCXK-GfETqp1UZw7aX80rA-XDrOncBSm6-j1fGEywu87h-X5vWHD_9-iEHlSWPoNuDCRggHmRhhq_NCI5rjiyj619yx0Iyi7P10_bo3fY83IgEzxuMtZRI-09zn_BwTvITU"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Settings Area -->
+<div class="flex-1 overflow-y-auto p-8 no-scrollbar bg-slate-50 dark:bg-background-dark/40">
+<div class="max-w-5xl mx-auto space-y-8">
+<div>
+<h2 class="text-3xl font-black tracking-tight mb-2">System Configuration</h2>
+<p class="text-slate-500 dark:text-slate-400">Manage hardware offsets, AI sensitivity, and network security protocols.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Pill Calibration Card -->
+<section class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">tune</span>
+<h3 class="font-bold text-lg">Pill Calibration</h3>
+</div>
+<div class="space-y-6">
+<div class="flex justify-between items-center p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+<div>
+<p class="text-xs font-bold uppercase text-slate-400 mb-1">Status</p>
+<p class="font-semibold text-emerald-500 flex items-center gap-2">
+                                            Connected 
+                                            <span class="material-symbols-outlined text-sm">check_circle</span>
+</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-bold uppercase text-slate-400 mb-1">Battery</p>
+<p class="font-mono font-bold">88%</p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between">
+<label class="text-sm font-medium">Sensor Offset (mm)</label>
+<span class="text-sm font-mono text-primary">+0.04</span>
+</div>
+<input class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary slider-thumb" type="range"/>
+<div class="flex justify-between text-[10px] uppercase font-bold text-slate-400">
+<span>-1.00</span>
+<span>0.00</span>
+<span>+1.00</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary/10 hover:bg-primary/20 text-primary font-bold rounded-lg transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">refresh</span>
+                                    Initiate Recalibration
+                                </button>
+</div>
+</section>
+<!-- AI Sensitivity Card -->
+<section class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">psychology</span>
+<h3 class="font-bold text-lg">ProScan AI Sensitivity</h3>
+</div>
+<div class="space-y-6">
+<div class="space-y-3">
+<div class="flex justify-between">
+<label class="text-sm font-medium">Confidence Threshold</label>
+<span class="px-2 py-0.5 bg-primary/20 text-primary text-xs font-bold rounded">85%</span>
+</div>
+<input class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary slider-thumb" type="range"/>
+<p class="text-xs text-slate-400 leading-relaxed italic">Higher values reduce false positives but may miss subtle anomalies.</p>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-medium">False Positive Mitigation</p>
+<p class="text-xs text-slate-400">Enable advanced filtering layer</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-medium">Auto-Labeling</p>
+<p class="text-xs text-slate-400">Metadata tagging on anomaly detection</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Video Stream Quality -->
+<section class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">videocam</span>
+<h3 class="font-bold text-lg">Stream Quality</h3>
+</div>
+<div class="space-y-6">
+<div class="space-y-3">
+<label class="text-sm font-medium block">Resolution Output</label>
+<div class="grid grid-cols-3 gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+<button class="py-2 text-xs font-bold rounded-md bg-white dark:bg-slate-700 shadow-sm">720p</button>
+<button class="py-2 text-xs font-bold rounded-md text-slate-500 hover:bg-white/50 dark:hover:bg-slate-700/50">1080p</button>
+<button class="py-2 text-xs font-bold rounded-md text-slate-500 hover:bg-white/50 dark:hover:bg-slate-700/50">4K HDR</button>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between">
+<label class="text-sm font-medium">Target Bitrate</label>
+<span class="text-sm font-mono text-primary">12 Mbps</span>
+</div>
+<input class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary slider-thumb" type="range"/>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-sm font-medium">Dynamic Compression</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Network Status Card -->
+<section class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">sensors</span>
+<h3 class="font-bold text-lg">Network Metrics</h3>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold uppercase text-slate-400 mb-2">Signal Strength</p>
+<div class="flex items-end gap-1 h-8">
+<div class="w-1.5 h-1/4 bg-primary rounded-t"></div>
+<div class="w-1.5 h-2/4 bg-primary rounded-t"></div>
+<div class="w-1.5 h-3/4 bg-primary rounded-t"></div>
+<div class="w-1.5 h-[90%] bg-primary rounded-t"></div>
+<div class="w-1.5 h-full bg-primary/20 rounded-t"></div>
+</div>
+<p class="mt-2 text-sm font-bold">-64 dBm</p>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold uppercase text-slate-400 mb-2">Latency</p>
+<p class="text-2xl font-mono font-black text-primary">14<span class="text-xs font-normal text-slate-400 ml-1">ms</span></p>
+<p class="mt-2 text-[10px] text-emerald-500 font-bold uppercase tracking-tight">Optimal</p>
+</div>
+</div>
+<div class="mt-4 space-y-2">
+<div class="flex justify-between text-xs py-2 border-b border-slate-100 dark:border-slate-800">
+<span class="text-slate-500">Gateway IP</span>
+<span class="font-mono">192.168.1.254</span>
+</div>
+<div class="flex justify-between text-xs py-2">
+<span class="text-slate-500">Packet Loss</span>
+<span class="font-mono">0.001%</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Security & Access Section -->
+<section class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">admin_panel_settings</span>
+<h3 class="font-bold text-lg">Security &amp; Access</h3>
+</div>
+<button class="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg text-sm font-bold transition-all">
+                                Manage Permissions
+                            </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/30 text-[10px] uppercase font-bold text-slate-400">
+<th class="px-6 py-3">Event Type</th>
+<th class="px-6 py-3">User ID</th>
+<th class="px-6 py-3">Timestamp</th>
+<th class="px-6 py-3">Action</th>
+<th class="px-6 py-3 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="text-xs font-mono">
+<tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/20">
+<td class="px-6 py-4 font-bold text-primary">ACCESS_LOGIN</td>
+<td class="px-6 py-4">USR_DR_CHEN</td>
+<td class="px-6 py-4 text-slate-400">2023-11-24 14:22:10</td>
+<td class="px-6 py-4">System Console Entry</td>
+<td class="px-6 py-4 text-right"><span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 rounded uppercase text-[10px]">Verified</span></td>
+</tr>
+<tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/20">
+<td class="px-6 py-4 font-bold text-primary">SET_OVERRIDE</td>
+<td class="px-6 py-4">USR_TECH_04</td>
+<td class="px-6 py-4 text-slate-400">2023-11-24 14:15:02</td>
+<td class="px-6 py-4">Calib Offset +0.02</td>
+<td class="px-6 py-4 text-right"><span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 rounded uppercase text-[10px]">Logged</span></td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20">
+<td class="px-6 py-4 font-bold text-amber-500">EMERGENCY_LOCK</td>
+<td class="px-6 py-4">SYSTEM_AUTO</td>
+<td class="px-6 py-4 text-slate-400">2023-11-24 12:00:55</td>
+<td class="px-6 py-4">Procedure Freeze</td>
+<td class="px-6 py-4 text-right"><span class="px-2 py-0.5 bg-amber-500/10 text-amber-500 rounded uppercase text-[10px]">Critical</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer Action Bar -->
+<footer class="h-20 border-t border-slate-200 dark:border-slate-800 px-8 flex items-center justify-between bg-white dark:bg-background-dark">
+<div class="flex items-center gap-2 text-amber-500 text-sm font-medium">
+<span class="material-symbols-outlined">warning</span>
+<span>Configuration locked for active procedure</span>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-lg font-bold text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">Discard Changes</button>
+<button class="px-8 py-2.5 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                        Commit Configuration
+                    </button>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartPill Command - Patient Records</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0B0E14",
+                        "surface-dark": "#161B22",
+                        "border-dark": "#232f48",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scrollbar-width: thin;
+            scrollbar-color: #232f48 #0B0E14;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0E14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232f48;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 border-r border-border-dark bg-background-dark flex flex-col justify-between p-4">
+<div class="flex flex-col gap-8">
+<!-- Branding -->
+<div class="flex items-center gap-3 px-2">
+<div class="bg-primary size-10 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">pill</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-100 text-sm font-bold leading-tight tracking-tight uppercase">SmartPill</h1>
+<p class="text-slate-400 text-xs font-medium">Command Center</p>
+</div>
+</div>
+<!-- Nav Links -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/20 text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Patient Records</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">biotech</span>
+<span class="text-sm font-medium">Lab Results</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="text-sm font-medium">Live Missions</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">System Settings</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Bottom -->
+<div class="flex flex-col gap-4">
+<button class="w-full bg-red-600/20 text-red-500 border border-red-600/30 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:bg-red-600/30 transition-all">
+<span class="material-symbols-outlined text-sm">emergency</span>
+                    Emergency Alert
+                </button>
+<div class="flex items-center gap-3 p-2 bg-surface-dark rounded-xl border border-border-dark">
+<div class="size-8 rounded-full bg-slate-700" data-alt="Portrait of Dr. Smith, a medical professional" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDuxQ1TWOdZj7FxcdGI65IMpMlx4F-wdfoKyrnMgPCuWsPiCktKXPMz5k1EF_8WSvcfptPTqVw3tAYTsE5SAEjDyYroyd30u2WMxx6NBngXjTtfoHQg7zKXTYJ8Siaf_vt4ZgaL3wNxvr5Zoe36L_sL4ovyGVCQhMeekdcBvQREwpGoKlJEKxMy64fjo0cUn3dehYrHDVfJaY1_JyUzos430PtY9KxTcVuACcIACQg6DI_0E_uoYzV9WpXygu3lJqakYOfpWQ_izII'); background-size: cover;"></div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-xs font-bold text-slate-100 truncate">Dr. Julian Smith</p>
+<p class="text-[10px] text-slate-400 truncate">Senior Gastroenterologist</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-background-light dark:bg-background-dark">
+<!-- Top Header -->
+<header class="h-16 border-b border-border-dark bg-surface-dark/50 backdrop-blur-md flex items-center justify-between px-6 shrink-0">
+<div class="flex items-center gap-4">
+<nav class="flex text-xs font-medium text-slate-400 gap-2 items-center">
+<span>Patients</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-100">John Doe</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full bg-background-dark border-border-dark rounded-lg pl-10 py-1.5 text-sm focus:ring-primary focus:border-primary text-slate-100" placeholder="Global search..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-primary/80 transition-all">
+<span class="material-symbols-outlined text-sm">cloud_upload</span>
+                            Upload New Data
+                        </button>
+<button class="bg-surface-dark border border-border-dark text-slate-100 text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-border-dark transition-all">
+<span class="material-symbols-outlined text-sm">file_download</span>
+                            Export Records
+                        </button>
+</div>
+</div>
+</header>
+<!-- Split View Body -->
+<div class="flex-1 flex min-h-0 overflow-hidden">
+<!-- Left: Patient Directory List -->
+<section class="w-80 border-r border-border-dark flex flex-col shrink-0">
+<div class="p-4 border-b border-border-dark">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-sm font-bold uppercase tracking-wider text-slate-400">Directory</h2>
+<span class="bg-primary/20 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">1,240 Total</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">filter_list</span>
+<input class="w-full bg-surface-dark border-border-dark rounded-lg pl-10 py-2 text-xs focus:ring-primary text-slate-100" placeholder="Filter patients..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<!-- Patient Card Active -->
+<div class="p-4 bg-primary/10 border-l-4 border-primary cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-slate-600 border border-primary/50 shrink-0 overflow-hidden" data-alt="Profile photo of patient John Doe" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAuSLr2gtogdRcX8KqE2njH0qwwxO0FRQ-svq3_KqTCZM6AcAj-YHVYmz5UShxuYBS46B1m9kLu3sG4J2td7lzmORCnGJSKQ_JrV4OTnpisCGQUpQHQd3B9BQfO2zGIpgEGK_HxCexO-tS5Uev5UiB_rXxTATPfpyUmDb4u-kGC16SXZp_voiw20_G_s8zaW1s40BMTC8m3MSjrOeClbCA9d-Y8um31NQomASHBDiGPKDZi81nSVi98aBaxG9SOwlv6e9hpILSH9B4'); background-size: cover;"></div>
+<div class="min-w-0">
+<p class="text-sm font-bold text-slate-100 truncate">John Doe</p>
+<p class="text-[11px] text-slate-400 font-mono truncate">ID: #SP-8821</p>
+</div>
+<div class="ml-auto">
+<span class="block size-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+</div>
+</div>
+</div>
+<!-- Other Patients -->
+<div class="p-4 border-b border-border-dark/50 hover:bg-surface-dark cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-slate-600 shrink-0 overflow-hidden" data-alt="Profile photo of patient Jane Smith" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDKvSWeUT4egmm_1YafV1fEzOz-ZLxCAMNLDhbtLK778kI8rGWzJl_MSa7NlO-3oAc57My6GHLqpSVK0LdxhbLh5Z58UNZ9vyfaBbzcVqaisJ1RWoLZ-FrNyMmp53NhiGipT3QL9kyCkecp9a2j2PPJ-enZ5EQ128ZwEBJMFDrx2te1nnqIOIzkf3Uam2FISfavphKWNPifMFl8cMcygAA9aoyBW-9oGoL8h4xUcsBbEyLDXP29FTBzfXp_uFbux5VrckdpG_yCG4'); background-size: cover;"></div>
+<div class="min-w-0">
+<p class="text-sm font-bold text-slate-400 truncate">Jane Smith</p>
+<p class="text-[11px] text-slate-500 font-mono truncate">ID: #SP-9012</p>
+</div>
+<div class="ml-auto">
+<span class="block size-2 rounded-full bg-amber-500"></span>
+</div>
+</div>
+</div>
+<div class="p-4 border-b border-border-dark/50 hover:bg-surface-dark cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-slate-600 shrink-0 overflow-hidden" data-alt="Profile photo of patient Robert Chen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCS_t9ExPDHSa96FHUI7kcOeuOqTtRexqQjf3LksnH-oOdHbSn3MMwIYZMR4hXBVFiMBWG_HK_0B1bR1CCImQlDnz9uUlQCI3iLAOaVl3D_b_UX-QNHjfZzi0oGJlg1SJmDw4ab2J20w390QfVCUVr8a2XAgFS1TcH_pAmxOGawsll8qfJ_OshAglfl5Bq8bi2u1sdzCTLlUMxdIUYJ3qSjGaiaLOOoBHM7oNTH7vCfQHyOTh8l82bb1sArgL5hn_yVtytSeN7e3BY'); background-size: cover;"></div>
+<div class="min-w-0">
+<p class="text-sm font-bold text-slate-400 truncate">Robert Chen</p>
+<p class="text-[11px] text-slate-500 font-mono truncate">ID: #SP-7734</p>
+</div>
+<div class="ml-auto">
+<span class="block size-2 rounded-full bg-slate-600"></span>
+</div>
+</div>
+</div>
+<!-- Mock data repeat -->
+<div class="p-4 border-b border-border-dark/50 hover:bg-surface-dark cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-slate-600 shrink-0 overflow-hidden" data-alt="Profile photo of patient Sarah Miller" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCn0ugLdMCesWPTEP1nm5He2YFzxLwW6syACmqUkOLft2cxuTR42jAfmkB_1NLy3Lx5ZYoM4hi3uUfTugOgFtEWfNYGuLNWAT5fnX4zzopM9MLraZHneNmUsBbQnxQeq_mSrmaOocXQsxTlDoXCxZU4S6M-FZ3cm4BiIc1ECt3jBnKPB1HirmZFaPutKcFvR8wW5YX5M-6CKFNKIrP2hJtPfjqGmlz81kdYQkgzAs0lIXoXpaKEdAxYn1opjjqyPkTAKpiEJIi_pGE'); background-size: cover;"></div>
+<div class="min-w-0">
+<p class="text-sm font-bold text-slate-400 truncate">Sarah Miller</p>
+<p class="text-[11px] text-slate-500 font-mono truncate">ID: #SP-4421</p>
+</div>
+<div class="ml-auto">
+<span class="block size-2 rounded-full bg-green-500"></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right: Patient Detailed Profile -->
+<section class="flex-1 overflow-y-auto p-8 bg-background-dark/30">
+<div class="max-w-4xl mx-auto space-y-8">
+<!-- Profile Header -->
+<div class="flex items-start gap-8 bg-surface-dark p-6 rounded-2xl border border-border-dark shadow-xl">
+<div class="size-32 rounded-2xl bg-slate-700 shrink-0 border-2 border-primary/20 overflow-hidden" data-alt="Large profile photo of John Doe" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAAhYM6rF9bgPYW8aOkrSdDORY7KdJIv7Vq1iaJ7jd7osgqw5KXKQrklc88Kb3njhU8NDVpjEFWnbXTSMOks6fUwAAdTUdeZSZ8bMqogVyAV9fyHc7oB5nT9IslOoxCBa87_bYJ5hC4kwTDPFTCvm_6BW-RAQNl1Wprns_gyArUWQ_oWGiK6pV4gUZn0L_Hz4ifrGSdARdJ9Qc6j2HdmygM1ylQQNcxWhEhLAcqnP3LcqMAFXqDCScvrIeahz6gbyHbINVVroBUQnM'); background-size: cover;"></div>
+<div class="flex-1 space-y-2">
+<div class="flex items-center justify-between">
+<h1 class="text-4xl font-extrabold text-slate-100 tracking-tight">John Doe</h1>
+<span class="bg-green-500/20 text-green-400 text-xs font-bold px-3 py-1 rounded-full border border-green-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                        Stable Condition
+                                    </span>
+</div>
+<div class="flex items-center gap-4 text-slate-400 text-sm font-mono">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">fingerprint</span>
+                                        ID: #SP-8821
+                                    </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">event</span>
+                                        DOB: 05/12/1982
+                                    </span>
+</div>
+<div class="grid grid-cols-4 gap-4 mt-6">
+<div class="bg-background-dark/50 p-3 rounded-xl border border-border-dark">
+<p class="text-[10px] uppercase font-bold text-slate-500 mb-1">Age</p>
+<p class="text-lg font-bold text-slate-100">42</p>
+</div>
+<div class="bg-background-dark/50 p-3 rounded-xl border border-border-dark">
+<p class="text-[10px] uppercase font-bold text-slate-500 mb-1">Gender</p>
+<p class="text-lg font-bold text-slate-100">Male</p>
+</div>
+<div class="bg-background-dark/50 p-3 rounded-xl border border-border-dark">
+<p class="text-[10px] uppercase font-bold text-slate-500 mb-1">Blood Type</p>
+<p class="text-lg font-bold text-slate-100">O+</p>
+</div>
+<div class="bg-background-dark/50 p-3 rounded-xl border border-border-dark">
+<p class="text-[10px] uppercase font-bold text-slate-500 mb-1">Height</p>
+<p class="text-lg font-bold text-slate-100">182 cm</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Details Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Left: Medical History -->
+<div class="md:col-span-2 space-y-6">
+<div class="bg-surface-dark p-6 rounded-2xl border border-border-dark">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">history_edu</span>
+<h3 class="text-lg font-bold text-slate-100">Medical History Summary</h3>
+</div>
+<div class="space-y-4 text-slate-300 text-sm leading-relaxed">
+<p>Patient presents with a history of <span class="text-slate-100 font-semibold underline decoration-primary/50">chronic hypertension</span> (diagnosed 2015) currently managed with Lisinopril. Underwent gastric bypass surgery in June 2018 with no major complications.</p>
+<p>Known allergies to Penicillin and Shellfish. History of seasonal asthma. SmartPill protocol initiated for monitoring of recurring gastrointestinal discomfort and potential malabsorption issues following bypass procedure.</p>
+<ul class="list-disc list-inside space-y-1 text-slate-400">
+<li>Annual cardiac screenings: Normal (Last: Jan 2024)</li>
+<li>HbA1c levels: 5.4% (Stable)</li>
+<li>Blood Pressure: 132/84 (Controlled)</li>
+</ul>
+</div>
+</div>
+<!-- Timeline -->
+<div class="bg-surface-dark p-6 rounded-2xl border border-border-dark">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">timeline</span>
+<h3 class="text-lg font-bold text-slate-100">SmartPill Mission History</h3>
+</div>
+<button class="text-primary text-xs font-bold hover:underline">View All Missions</button>
+</div>
+<div class="space-y-6 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-px before:bg-border-dark">
+<!-- Mission Item -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1.5 size-6 rounded-full bg-primary flex items-center justify-center text-white ring-4 ring-surface-dark">
+<span class="material-symbols-outlined text-[14px]">rocket_launch</span>
+</div>
+<div class="flex items-center justify-between mb-1">
+<h4 class="text-sm font-bold text-slate-100">Mission Alpha-7: Routine Gastro-Scan</h4>
+<span class="text-[10px] font-bold text-slate-500">OCT 12, 2024</span>
+</div>
+<p class="text-xs text-slate-400 mb-2">Full pH level tracking and high-resolution imaging of the lower intestinal tract.</p>
+<div class="flex items-center gap-2">
+<span class="bg-green-500/10 text-green-500 text-[10px] font-bold px-2 py-0.5 rounded border border-green-500/20 uppercase tracking-tighter">Completed</span>
+<span class="bg-surface-dark border border-border-dark text-[10px] text-slate-400 px-2 py-0.5 rounded">244 MB Data Sync</span>
+</div>
+</div>
+<!-- Mission Item -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1.5 size-6 rounded-full bg-slate-700 flex items-center justify-center text-slate-400 ring-4 ring-surface-dark">
+<span class="material-symbols-outlined text-[14px]">settings_backup_restore</span>
+</div>
+<div class="flex items-center justify-between mb-1">
+<h4 class="text-sm font-bold text-slate-300">Mission Beta-2: Nutrient Absorption Study</h4>
+<span class="text-[10px] font-bold text-slate-500">SEP 05, 2024</span>
+</div>
+<p class="text-xs text-slate-500 mb-2">Targeted enzymatic response analysis following controlled meal plan.</p>
+<div class="flex items-center gap-2">
+<span class="bg-slate-500/10 text-slate-500 text-[10px] font-bold px-2 py-0.5 rounded border border-slate-500/20 uppercase tracking-tighter">Archived</span>
+<span class="bg-surface-dark border border-border-dark text-[10px] text-slate-400 px-2 py-0.5 rounded">128 MB Data Sync</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Vital Quick Look -->
+<div class="space-y-6">
+<div class="bg-surface-dark p-6 rounded-2xl border border-border-dark">
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Latest Vitals</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-background-dark/50 rounded-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500">favorite</span>
+<span class="text-xs text-slate-300">Heart Rate</span>
+</div>
+<span class="text-sm font-bold text-slate-100">72 BPM</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-background-dark/50 rounded-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-500">thermostat</span>
+<span class="text-xs text-slate-300">Body Temp</span>
+</div>
+<span class="text-sm font-bold text-slate-100">36.8°C</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-background-dark/50 rounded-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500">water_drop</span>
+<span class="text-xs text-slate-300">Blood Sugar</span>
+</div>
+<span class="text-sm font-bold text-slate-100">94 mg/dL</span>
+</div>
+</div>
+<button class="w-full mt-4 py-2 border border-border-dark rounded-lg text-xs font-bold text-slate-400 hover:text-slate-100 hover:bg-border-dark transition-all">
+                                        Full Diagnostics Report
+                                    </button>
+</div>
+<div class="bg-primary/10 border border-primary/20 p-6 rounded-2xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary">clinical_notes</span>
+<h3 class="text-sm font-bold text-primary">Doctor's Note</h3>
+</div>
+<p class="text-[11px] text-slate-300 italic leading-relaxed">
+                                        "Patient responding well to SmartPill Alpha-7 findings. Adjusted dosage of gastric enzymes. Next scan scheduled for December to verify mucosal healing."
+                                    </p>
+<div class="mt-4 flex items-center gap-2">
+<div class="size-6 rounded-full bg-slate-600" data-alt="Small avatar of Dr. Smith" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtV2hMPs7gZoCFX1oerZ7ZZStfwDJExgimVmscHCes40SD8MBVHSXUgezvExYaqqXxK0ORd5fOhp7PYOrMru_PtrkLNEmSgAqFiHlOVN6Qc58-hxmOhIs4hQ10PsUEQGqj4IgvUq2EOYk33JmBcNUkZbAQpHDQMgL2UUPEl7Q1_Xe-fpcnc-Y2RMb2bkEtnU8WzDLge3-f0oj0myET-xLlCRWYHkYpnDaOMVZc2esojG08rWYMaqbx0-jxEKwmYXlcN09LmHNwsng'); background-size: cover;"></div>
+<span class="text-[10px] font-bold text-slate-100">Dr. Smith</span>
+<span class="text-[10px] text-slate-500">• 2 days ago</span>
+</div>
+</div>
+<div class="bg-surface-dark border border-border-dark rounded-2xl p-4 overflow-hidden relative group">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Pill Telemetry</h3>
+<span class="material-symbols-outlined text-xs text-slate-500">fullscreen</span>
+</div>
+<div class="h-24 bg-background-dark/80 rounded-lg flex items-end gap-1 p-2">
+<!-- Mock Waveform -->
+<div class="flex-1 bg-primary/40 rounded-t h-[30%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t h-[50%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[40%]"></div>
+<div class="flex-1 bg-primary/80 rounded-t h-[70%]"></div>
+<div class="flex-1 bg-primary rounded-t h-[90%]"></div>
+<div class="flex-1 bg-primary/70 rounded-t h-[60%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[30%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t h-[50%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[40%]"></div>
+<div class="flex-1 bg-primary/80 rounded-t h-[70%]"></div>
+<div class="flex-1 bg-primary rounded-t h-[85%]"></div>
+<div class="flex-1 bg-primary/70 rounded-t h-[55%]"></div>
+</div>
+<p class="mt-3 text-[10px] text-center text-slate-500">Live signal: 98% Connectivity</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>
