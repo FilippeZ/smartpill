@@ -1,7 +1,7 @@
 # 💊 SmartPill — Bio-Intelligence Command Center (v2.4)
 ### Next-Generation Ingestible Micro-Robotics & Real-Time Endoscopic AI Diagnostics
 
-`Next.js 14` `FastAPI` `PyTorch` `EndoL2H` `GalarCapsuleML` `Bio-Intelligence`
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi) ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) ![EndoL2H](https://img.shields.io/badge/EndoL2H-Super--Resolution-blue?style=for-the-badge) ![GalarCapsuleML](https://img.shields.io/badge/GalarCapsuleML-Diagnostics-green?style=for-the-badge) ![Bio-Intelligence](https://img.shields.io/badge/Bio--Intelligence-v2.4-orange?style=for-the-badge)
 
 ## 📋 Overview
 SmartPill is a high-fidelity, advanced bio-intelligence platform designed for ingestible capsule endoscopy. It operationalizes a hardware-ready deep-learning pipeline that transforms raw, low-power pill data into high-resolution clinical insights. The project integrates state-of-the-art super-resolution (`EndoL2H`) and precise disease classification (`GalarCapsuleML`) within a cinematic, mission-critical Command Center.
